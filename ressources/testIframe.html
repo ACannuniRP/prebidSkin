@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<script type="text/javascript">			
+			var test = function(e) {
+				if (e.data.message !== "render"){
+    			return;
+    			}
+				document.write(e.data.html);
+				var script2 = document.createElement("script");
+				var code = "var sendMessage = function(){ parent.window.postMessage({message: 'click', }, '*');}; window.addEventListener('click', sendMessage, false);";
+				var inlineScript = document.createTextNode(code);
+				script2.appendChild(inlineScript); 
+				document.getElementsByTagName('head')[0].appendChild(script2);
+			}
+
+			window.addEventListener('message', test, false);
+		</script>
+	</head>
+	<body></body>
+</html>
